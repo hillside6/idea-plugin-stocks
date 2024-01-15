@@ -1,1 +1,1 @@
-# idea-plugin-stock
+# idea-plugin-stockItem

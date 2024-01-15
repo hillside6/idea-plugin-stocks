@@ -1,0 +1,16 @@
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <title>background</title>
+        <rect fill="none" id="canvas_background" height="42" width="42" y="-1" x="-1"/>
+        <g display="none" overflow="visible" id="canvasGrid">
+            <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+        </g>
+    </g>
+    <g>
+        <title>Layer 1</title>
+        <text font-weight="bold" stroke="#ff0000"
+              transform="matrix(2.181746521450213,0,0,1.8860959543420854,-25.782635133974637,-16.08729064366679) "
+              xml:space="preserve" text-anchor="start" font-family="Junction, sans-serif" font-size="24" id="svg_21"
+              y="27.96809" x="11.98771" stroke-width="0" fill="#ff0000">A</text>
+    </g>
+</svg>

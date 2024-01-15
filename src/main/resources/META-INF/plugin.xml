@@ -1,0 +1,45 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.github.hillside6.idea-plugin-stockItem</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>A Stock</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="hillside6@qq.com" url="https://github.com/hillside6">hillside6</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description>
+        <![CDATA[
+            <p>A Stock is an IDEA plugin for Chinese securities. </p>
+            <br />
+            <p>股票行情来源于网络，不做为投资参考意见</p>
+            <br />
+            <p>如有建议或者问题，请直接在插件评论、或者GitHub反馈，<a href='https://github.com/hillside6/idea-plugin-stock'>idea-plugin-stock</a></p>
+        ]]>
+    </description>
+    <change-notes>
+        <![CDATA[
+            <h1>1.0.0</h1>
+            <p>1.初始版本，实现基本功能</p>
+            <p>2.新增、删除、调整股票；手动刷新行情，配置数据源</p>
+        ]]>
+    </change-notes>
+    <version>1.0.1</version>
+    <idea-version since-build="2021.1"/>
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Stock" anchor="right"
+                    factoryClass="com.github.hillside6.idea.plugin.stock.StockToolWindowFactory"
+                    secondary="true" icon="AllIcons.General.Locate"/>
+    </extensions>
+</idea-plugin>
