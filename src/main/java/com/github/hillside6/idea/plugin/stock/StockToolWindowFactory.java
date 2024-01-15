@@ -140,7 +140,7 @@ public class StockToolWindowFactory implements ToolWindowFactory {
             String str = stockItemList.stream().map(StockItem::getName).collect(Collectors.joining(","));
             int status = Messages.showOkCancelDialog(str, "是否删除自选股?", "是", "否", Messages.getWarningIcon());
             if (status == Messages.OK) {
-                ConfigManager.deleteStoredStock(stockItemList.stream().map(StockItem::getCode).toList());
+                ConfigManager.deleteStock(stockItemList.stream().map(StockItem::getCode).toList());
                 updateData(tableView);
             }
         });

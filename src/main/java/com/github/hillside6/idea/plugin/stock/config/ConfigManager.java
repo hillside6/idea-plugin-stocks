@@ -68,13 +68,13 @@ public final class ConfigManager {
     /**
      * 添加股票
      */
-    public static void addStoredStock(Stock storedStock) {
+    public static void addStock(Stock stock) {
         Config config = loadConfig();
         //删除重复的股票
-        config.getStockList().removeIf(stock -> storedStock.getCode().equalsIgnoreCase(stock.getCode()));
+        config.getStockList().removeIf(s -> stock.getCode().equalsIgnoreCase(s.getCode()));
         //将新加的股票放到前面
         List<Stock> stockList = new ArrayList<>();
-        stockList.add(storedStock);
+        stockList.add(stock);
         stockList.addAll(config.getStockList());
         config.setStockList(stockList);
         updateConfig(config);
@@ -83,7 +83,7 @@ public final class ConfigManager {
     /**
      * 删除股票
      */
-    public static void deleteStoredStock(List<String> stockCodeList) {
+    public static void deleteStock(List<String> stockCodeList) {
         Config config = loadConfig();
         if (config == null) {
             config = new Config();
@@ -93,6 +93,9 @@ public final class ConfigManager {
         updateConfig(config);
     }
 
+    /**
+     * 上移股票
+     */
     public static void upStock(String stockCode) {
         Config config = loadConfig();
         if (config == null) {
@@ -115,6 +118,9 @@ public final class ConfigManager {
         updateConfig(config);
     }
 
+    /**
+     * 下移股票
+     */
     public static void downStock(String stockCode) {
         Config config = loadConfig();
         if (config == null) {
