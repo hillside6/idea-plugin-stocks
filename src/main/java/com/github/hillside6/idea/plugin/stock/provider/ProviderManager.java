@@ -1,4 +1,4 @@
-package com.github.hillside6.idea.plugin.stock.quote;
+package com.github.hillside6.idea.plugin.stock.provider;
 
 import com.github.hillside6.idea.plugin.stock.common.QuoteProviderType;
 import com.github.hillside6.idea.plugin.stock.config.Config;
@@ -20,7 +20,7 @@ public final class ProviderManager {
     }
 
     private static final Map<QuoteProviderType, Provider> providerMap =
-            Stream.of(new SinaProvider(), new TencentProvider())
+            Stream.of(new TencentProvider())
                     .collect(Collectors.toMap(Provider::providerType, o -> o));
 
     /**

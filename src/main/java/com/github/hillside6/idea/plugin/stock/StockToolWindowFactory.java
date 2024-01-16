@@ -1,10 +1,10 @@
 package com.github.hillside6.idea.plugin.stock;
 
-import com.github.hillside6.idea.plugin.stock.common.StockItem;
 import com.github.hillside6.idea.plugin.stock.config.Config;
 import com.github.hillside6.idea.plugin.stock.config.ConfigManager;
-import com.github.hillside6.idea.plugin.stock.quote.Provider;
-import com.github.hillside6.idea.plugin.stock.quote.ProviderManager;
+import com.github.hillside6.idea.plugin.stock.config.Stock;
+import com.github.hillside6.idea.plugin.stock.provider.Provider;
+import com.github.hillside6.idea.plugin.stock.provider.ProviderManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.wm.ToolWindow;
@@ -57,7 +57,7 @@ public class StockToolWindowFactory implements ToolWindowFactory {
         btnPanel.add(configBtn, HorizontalLayout.LEFT);
         btnPanel.setBounds(5, 5, 300, 30);
         //数据表格栏
-        TableView<StockItem> tableView = new TableView<>();
+        TableView<Stock> tableView = new TableView<>();
         JBScrollPane jbScrollPane = new JBScrollPane(tableView);
         jbScrollPane.setBounds(0, 40, 1, 1);
         //主面板
@@ -98,59 +98,60 @@ public class StockToolWindowFactory implements ToolWindowFactory {
         });
 
         ContentFactory contentFactory = ContentFactory.getInstance();
-        Content content = contentFactory.createContent(mainPanel, "我的自选", false);
+        Content content = contentFactory.createContent(mainPanel, null, false);
         toolWindow.getContentManager().addContent(content);
         updateData(tableView);
     }
 
-    private void bindDownEvent(JButton downBtn, TableView<StockItem> tableView) {
+    private void bindDownEvent(JButton downBtn, TableView<Stock> tableView) {
         downBtn.addActionListener(e -> {
-            List<StockItem> stockItemList = tableView.getSelectedObjects();
-            if (CollectionUtils.isEmpty(stockItemList)) {
+            List<Stock> stockList = tableView.getSelectedObjects();
+            if (CollectionUtils.isEmpty(stockList)) {
                 return;
             }
-            stockItemList = new ArrayList<>(stockItemList);
-            Collections.reverse(stockItemList);
-            for (StockItem stockItem : stockItemList) {
-                ConfigManager.downStock(stockItem == null ? "" : stockItem.getCode());
+            stockList = new ArrayList<>(stockList);
+            Collections.reverse(stockList);
+            for (Stock stock : stockList) {
+                ConfigManager.downStock(stock == null ? "" : stock.getCode());
             }
             updateData(tableView);
         });
     }
 
-    private void bindUpEvent(JButton upBtn, TableView<StockItem> tableView) {
+    private void bindUpEvent(JButton upBtn, TableView<Stock> tableView) {
         upBtn.addActionListener(e -> {
-            List<StockItem> stockItemList = tableView.getSelectedObjects();
-            if (CollectionUtils.isEmpty(stockItemList)) {
+            List<Stock> stockList = tableView.getSelectedObjects();
+            if (CollectionUtils.isEmpty(stockList)) {
                 return;
             }
-            for (StockItem stockItem : stockItemList) {
-                ConfigManager.upStock(stockItem == null ? "" : stockItem.getCode());
+            for (Stock stock : stockList) {
+                ConfigManager.upStock(stock == null ? "" : stock.getCode());
             }
             updateData(tableView);
         });
     }
 
-    private void bindDeleteEvent(JButton deleteBtn, TableView<StockItem> tableView) {
+    private void bindDeleteEvent(JButton deleteBtn, TableView<Stock> tableView) {
         deleteBtn.addActionListener(e -> {
-            List<StockItem> stockItemList = tableView.getSelectedObjects();
-            if (CollectionUtils.isEmpty(stockItemList)) {
+            List<Stock> stockList = tableView.getSelectedObjects();
+            if (CollectionUtils.isEmpty(stockList)) {
                 return;
             }
-            String str = stockItemList.stream().map(StockItem::getName).collect(Collectors.joining(","));
+            String str = stockList.stream().map(Stock::getName).collect(Collectors.joining(","));
             int status = Messages.showOkCancelDialog(str, "是否删除自选股?", "是", "否", Messages.getWarningIcon());
             if (status == Messages.OK) {
-                ConfigManager.deleteStock(stockItemList.stream().map(StockItem::getCode).toList());
+                ConfigManager.deleteStock(stockList.stream().map(Stock::getCode).toList());
                 updateData(tableView);
             }
         });
     }
 
-    private void updateData(TableView<StockItem> tableView) {
+    private void updateData(TableView<Stock> tableView) {
         Config config = ConfigManager.loadConfig();
         Provider provider = ProviderManager.getQuoteProvider(config);
-        List<StockItem> stockItemList = provider.load(config.getStockList());
-        ListTableModel<StockItem> tableModel = new ListTableModel<>(StockColumnInfoGenerator.generate(config), stockItemList);
+        provider.load(config.getStockList());
+        ListTableModel<Stock> tableModel = new ListTableModel<>(StockColumnInfoGenerator
+                .generate(config), config.getStockList());
         tableView.setModelAndUpdateColumns(tableModel);
     }
 }

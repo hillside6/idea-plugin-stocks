@@ -15,7 +15,8 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description>
         <![CDATA[
-            <p>A Stock is an IDEA plugin for Chinese securities. </p>
+            <p>Stock is a plugin for Chinese securities. </p>
+            <p>目前仅支持A股</p>
             <br />
             <p>股票行情来源于网络，不做为投资参考意见</p>
             <br />
@@ -24,13 +25,13 @@
     </description>
     <change-notes>
         <![CDATA[
-            <h1>1.0.0</h1>
+            <h2>1.1</h2>
             <p>1.初始版本，实现基本功能</p>
             <p>2.新增、删除、调整股票；手动刷新行情，配置数据源</p>
         ]]>
     </change-notes>
-    <version>1.0.1</version>
-    <idea-version since-build="2021.1"/>
+    <version>1.1</version>
+    <idea-version since-build="231"/>
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>

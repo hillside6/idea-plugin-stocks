@@ -1,6 +1,7 @@
 package com.github.hillside6.idea.plugin.stock.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.hillside6.idea.plugin.stock.common.MarketType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,11 +69,13 @@ public final class ConfigManager {
     /**
      * 添加股票
      */
-    public static void addStock(Stock stock) {
+    public static void addStock(String code, MarketType marketType) {
         Config config = loadConfig();
-        //删除重复的股票
-        config.getStockList().removeIf(s -> stock.getCode().equalsIgnoreCase(s.getCode()));
-        //将新加的股票放到前面
+        //如果存在之前的，删除就重新添加到前面
+        config.getStockList().removeIf(s -> code.equalsIgnoreCase(s.getCode()));
+        Stock stock = new Stock();
+        stock.setCode(code);
+        stock.setMarketType(marketType);
         List<Stock> stockList = new ArrayList<>();
         stockList.add(stock);
         stockList.addAll(config.getStockList());

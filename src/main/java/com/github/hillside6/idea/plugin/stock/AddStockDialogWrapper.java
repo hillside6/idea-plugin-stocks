@@ -2,7 +2,6 @@ package com.github.hillside6.idea.plugin.stock;
 
 import com.github.hillside6.idea.plugin.stock.common.MarketType;
 import com.github.hillside6.idea.plugin.stock.config.ConfigManager;
-import com.github.hillside6.idea.plugin.stock.config.Stock;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.ui.components.panels.VerticalLayout;
@@ -63,8 +62,7 @@ public class AddStockDialogWrapper extends DialogWrapper {
             } else {
                 marketType = MarketType.SZ;
             }
-            Stock stock = new Stock(code, marketType);
-            ConfigManager.addStock(stock);
+            ConfigManager.addStock(code, marketType);
             close(OK_EXIT_CODE);
         }
     }

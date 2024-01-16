@@ -3,7 +3,7 @@ package com.github.hillside6.idea.plugin.stock;
 import com.github.hillside6.idea.plugin.stock.common.QuoteProviderType;
 import com.github.hillside6.idea.plugin.stock.config.Config;
 import com.github.hillside6.idea.plugin.stock.config.ConfigManager;
-import com.github.hillside6.idea.plugin.stock.quote.ProviderManager;
+import com.github.hillside6.idea.plugin.stock.provider.ProviderManager;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.ValidationInfo;

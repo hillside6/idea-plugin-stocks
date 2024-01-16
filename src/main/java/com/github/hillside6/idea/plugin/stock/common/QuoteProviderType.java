@@ -8,7 +8,6 @@ package com.github.hillside6.idea.plugin.stock.common;
  */
 public enum QuoteProviderType {
     TENCENT("腾讯"),
-    SINA("新浪"),
     ;
     private final String desc;
 
