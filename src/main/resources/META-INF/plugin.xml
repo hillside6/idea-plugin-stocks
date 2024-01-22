@@ -1,11 +1,11 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.github.hillside6.idea-plugin-stock</id>
+    <id>com.github.hillside6.idea-plugin-stocks</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>A Stock</name>
+    <name>Stocks</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="hillside6@qq.com" url="https://github.com/hillside6">hillside6</vendor>
@@ -15,12 +15,12 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description>
         <![CDATA[
-            <p>Stock is a plugin for Chinese securities. </p>
+            <p>Stocks is a plugin for Chinese securities. </p>
             <p>目前仅支持A股</p>
             <br />
             <p>股票行情来源于网络，不做为投资参考意见</p>
             <br />
-            <p>如有建议或者问题，请直接在插件评论、或者GitHub反馈，<a href='https://github.com/hillside6/idea-plugin-stock'>idea-plugin-stock</a></p>
+            <p>如有建议或者问题，请直接在插件评论、或者GitHub反馈，<a href='https://github.com/hillside6/idea-plugin-stocks'>idea-plugin-stocks</a></p>
         ]]>
     </description>
     <change-notes>
@@ -39,8 +39,8 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Stock" anchor="right"
-                    factoryClass="com.github.hillside6.idea.plugin.stock.StockToolWindowFactory"
+        <toolWindow id="Stocks" anchor="right"
+                    factoryClass="com.github.hillside6.idea.plugin.stocks.StockToolWindowFactory"
                     secondary="true" icon="AllIcons.General.Locate"/>
     </extensions>
 </idea-plugin>

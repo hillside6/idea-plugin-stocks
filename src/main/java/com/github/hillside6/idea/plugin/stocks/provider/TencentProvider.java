@@ -1,9 +1,9 @@
-package com.github.hillside6.idea.plugin.stock.provider;
+package com.github.hillside6.idea.plugin.stocks.provider;
 
-import com.github.hillside6.idea.plugin.stock.common.MarketType;
-import com.github.hillside6.idea.plugin.stock.common.QuoteProviderType;
-import com.github.hillside6.idea.plugin.stock.common.util.HttpUtil;
-import com.github.hillside6.idea.plugin.stock.config.Stock;
+import com.github.hillside6.idea.plugin.stocks.common.MarketType;
+import com.github.hillside6.idea.plugin.stocks.common.QuoteProviderType;
+import com.github.hillside6.idea.plugin.stocks.common.util.HttpUtil;
+import com.github.hillside6.idea.plugin.stocks.config.Stock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

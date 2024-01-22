@@ -1,4 +1,4 @@
-package com.github.hillside6.idea.plugin.stock.common;
+package com.github.hillside6.idea.plugin.stocks.common;
 
 /**
  * 行情提供者类型

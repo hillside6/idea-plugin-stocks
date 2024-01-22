@@ -1,7 +1,7 @@
-package com.github.hillside6.idea.plugin.stock;
+package com.github.hillside6.idea.plugin.stocks;
 
-import com.github.hillside6.idea.plugin.stock.config.Config;
-import com.github.hillside6.idea.plugin.stock.config.Stock;
+import com.github.hillside6.idea.plugin.stocks.config.Config;
+import com.github.hillside6.idea.plugin.stocks.config.Stock;
 import com.intellij.ui.JBColor;
 import com.intellij.util.ui.ColumnInfo;
 import org.jetbrains.annotations.Nullable;

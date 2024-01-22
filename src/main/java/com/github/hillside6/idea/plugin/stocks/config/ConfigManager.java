@@ -1,7 +1,7 @@
-package com.github.hillside6.idea.plugin.stock.config;
+package com.github.hillside6.idea.plugin.stocks.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.hillside6.idea.plugin.stock.common.MarketType;
+import com.github.hillside6.idea.plugin.stocks.common.MarketType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public final class ConfigManager {
     public static Config loadConfig() {
         try {
             String userHome = System.getProperties().get("user.home").toString();
-            File file = new File(userHome + "/.IdeaPlugin/stock.config");
+            File file = new File(userHome + "/.IdeaPlugin/stocks.config");
             if (!file.getParentFile().exists()) {
                 Files.createDirectories(file.getParentFile().toPath());
             }
@@ -55,7 +55,7 @@ public final class ConfigManager {
     public static void updateConfig(Config config) {
         try {
             String userHome = System.getProperties().get("user.home").toString();
-            File file = new File(userHome + "/.IdeaPlugin/stock.config");
+            File file = new File(userHome + "/.IdeaPlugin/stocks.config");
             if (!file.getParentFile().exists()) {
                 Files.createDirectories(file.getParentFile().toPath());
             }

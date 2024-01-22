@@ -1,6 +1,6 @@
-package com.github.hillside6.idea.plugin.stock.provider;
+package com.github.hillside6.idea.plugin.stocks.provider;
 
-import com.github.hillside6.idea.plugin.stock.common.MarketType;
+import com.github.hillside6.idea.plugin.stocks.common.MarketType;
 
 import java.math.BigDecimal;
 

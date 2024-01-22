@@ -1,9 +1,9 @@
-package com.github.hillside6.idea.plugin.stock;
+package com.github.hillside6.idea.plugin.stocks;
 
-import com.github.hillside6.idea.plugin.stock.common.QuoteProviderType;
-import com.github.hillside6.idea.plugin.stock.config.Config;
-import com.github.hillside6.idea.plugin.stock.config.ConfigManager;
-import com.github.hillside6.idea.plugin.stock.provider.ProviderManager;
+import com.github.hillside6.idea.plugin.stocks.common.QuoteProviderType;
+import com.github.hillside6.idea.plugin.stocks.config.Config;
+import com.github.hillside6.idea.plugin.stocks.config.ConfigManager;
+import com.github.hillside6.idea.plugin.stocks.provider.ProviderManager;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.ValidationInfo;

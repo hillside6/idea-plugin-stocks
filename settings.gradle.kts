@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "idea-plugin-stock"
+rootProject.name = "idea-plugin-stocks"

@@ -1,4 +1,4 @@
-package com.github.hillside6.idea.plugin.stock.common.util;
+package com.github.hillside6.idea.plugin.stocks.common.util;
 
 import java.io.IOException;
 import java.net.URI;

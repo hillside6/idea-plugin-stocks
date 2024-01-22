@@ -1,7 +1,7 @@
-package com.github.hillside6.idea.plugin.stock;
+package com.github.hillside6.idea.plugin.stocks;
 
-import com.github.hillside6.idea.plugin.stock.common.MarketType;
-import com.github.hillside6.idea.plugin.stock.config.ConfigManager;
+import com.github.hillside6.idea.plugin.stocks.common.MarketType;
+import com.github.hillside6.idea.plugin.stocks.config.ConfigManager;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.ui.components.panels.VerticalLayout;

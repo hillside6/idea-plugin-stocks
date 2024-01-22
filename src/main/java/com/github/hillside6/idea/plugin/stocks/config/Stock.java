@@ -1,7 +1,7 @@
-package com.github.hillside6.idea.plugin.stock.config;
+package com.github.hillside6.idea.plugin.stocks.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.hillside6.idea.plugin.stock.common.MarketType;
+import com.github.hillside6.idea.plugin.stocks.common.MarketType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

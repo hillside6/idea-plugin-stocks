@@ -1,4 +1,4 @@
-# idea-plugin-stock
+# idea-plugin-stocks
 
 
-Stock is a plugin for Chinese securities.
+Stocks is a plugin for Chinese securities.
