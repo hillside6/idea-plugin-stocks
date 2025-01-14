@@ -15,17 +15,20 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.table.TableView;
 import com.intellij.util.ui.ListTableModel;
-import org.apache.commons.collections.CollectionUtils;
-import org.jetbrains.annotations.NotNull;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import org.apache.commons.collections.CollectionUtils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author hillside6
@@ -76,10 +79,16 @@ public class StockToolWindowFactory implements ToolWindowFactory {
         });
         //新增事件
         addBtn.addActionListener(e -> {
-            boolean isOk = new AddStockDialogWrapper().showAndGet();
-            if (isOk) {
-                updateData(tableView);
-            }
+            AddStockDialog dialog = new AddStockDialog();
+            dialog.setLocationRelativeTo(null);
+            dialog.pack();
+            dialog.setVisible(true);
+            dialog.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    updateData(tableView);
+                }
+            });
         });
         //删除事件
         bindDeleteEvent(deleteBtn, tableView);

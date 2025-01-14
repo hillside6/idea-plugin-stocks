@@ -4,15 +4,15 @@ import com.github.hillside6.idea.plugin.stocks.config.Config;
 import com.github.hillside6.idea.plugin.stocks.config.Stock;
 import com.intellij.ui.JBColor;
 import com.intellij.util.ui.ColumnInfo;
-import org.jetbrains.annotations.Nullable;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Comparator;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 显示列生成
@@ -67,7 +67,7 @@ public class StockColumnInfoGenerator {
     private static final ColumnInfo<Stock, String> LAST_PRICE_COLUMN_INFO = new ColumnInfo<>("最新") {
         @Override
         public String valueOf(Stock stock) {
-            return stock.getLastPrice().setScale(2, RoundingMode.HALF_UP).toString();
+            return stock.getLastPrice().setScale(3, RoundingMode.HALF_UP).toString();
         }
 
         @Override
@@ -93,7 +93,7 @@ public class StockColumnInfoGenerator {
     private static final ColumnInfo<Stock, String> CHANGE_COLUMN_INFO = new ColumnInfo<>("涨跌") {
         @Override
         public String valueOf(Stock stock) {
-            return stock.getChange().setScale(2, RoundingMode.HALF_UP).toString();
+            return stock.getChange().setScale(3, RoundingMode.HALF_UP).toString();
         }
 
         @Override
@@ -145,7 +145,7 @@ public class StockColumnInfoGenerator {
     private static final ColumnInfo<Stock, String> PREVIOUS_CLOSE_PRICE_COLUMN_INFO = new ColumnInfo<>("昨收") {
         @Override
         public String valueOf(Stock stock) {
-            return stock.getPreviousClosePrice().setScale(2, RoundingMode.HALF_UP).toString();
+            return stock.getPreviousClosePrice().setScale(3, RoundingMode.HALF_UP).toString();
         }
 
         @Override

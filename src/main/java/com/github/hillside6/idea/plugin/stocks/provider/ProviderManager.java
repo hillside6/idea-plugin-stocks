@@ -2,7 +2,6 @@ package com.github.hillside6.idea.plugin.stocks.provider;
 
 import com.github.hillside6.idea.plugin.stocks.common.QuoteProviderType;
 import com.github.hillside6.idea.plugin.stocks.config.Config;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

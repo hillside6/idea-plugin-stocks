@@ -2,7 +2,6 @@ package com.github.hillside6.idea.plugin.stocks.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.hillside6.idea.plugin.stocks.common.QuoteProviderType;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

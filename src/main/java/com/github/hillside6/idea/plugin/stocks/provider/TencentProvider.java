@@ -4,15 +4,14 @@ import com.github.hillside6.idea.plugin.stocks.common.MarketType;
 import com.github.hillside6.idea.plugin.stocks.common.QuoteProviderType;
 import com.github.hillside6.idea.plugin.stocks.common.util.HttpUtil;
 import com.github.hillside6.idea.plugin.stocks.config.Stock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 腾讯行情提供
@@ -36,13 +35,13 @@ public class TencentProvider extends Provider {
         try {
             //请求参数转换
             SecureRandom random = new SecureRandom();
-            String queryStr = "r=" + random.nextDouble() + "q=" + stockList.stream().map(stock -> {
-                if (stock.getMarketType() == MarketType.SZ) {
-                    return "s_sz" + stock.getCode();
-                } else {
-                    return "s_sh" + stock.getCode();
-                }
-            }).collect(Collectors.joining(","));
+            String queryStr = "r=" + random.nextDouble() + "q=" + stockList.stream().map(
+                    stock -> switch (stock.getMarketType()) {
+                        case SH -> "s_sh" + stock.getCode();
+                        case SZ -> "s_sz" + stock.getCode();
+                        case HK -> "s_hk" + stock.getCode();
+                        case US -> "s_us" + stock.getCode();
+                    }).collect(Collectors.joining(","));
             //请求
             String datas = HttpUtil.get("https://qt.gtimg.cn/" + queryStr);
             for (String data : datas.split(";")) {
@@ -52,7 +51,19 @@ public class TencentProvider extends Provider {
                 }
                 String code = strings[2];
                 String name = strings[1];
-                MarketType marketType = data.contains("sz") ? MarketType.SZ : MarketType.SH;
+                MarketType marketType;
+                if (data.contains("sz")) {
+                    marketType = MarketType.SZ;
+                } else if (data.contains("sh")) {
+                    marketType = MarketType.SH;
+                } else if (data.contains("hk")) {
+                    marketType = MarketType.HK;
+                } else if (data.contains("us")) {
+                    marketType = MarketType.US;
+                    code = code.split("\\.")[0];
+                } else {
+                    continue;
+                }
                 BigDecimal lastPrice = new BigDecimal(strings[3]).setScale(10, RoundingMode.HALF_UP);
                 BigDecimal changePrice = new BigDecimal(strings[4]).setScale(10, RoundingMode.HALF_UP);
                 BigDecimal previousClosePrice = lastPrice.subtract(changePrice);
