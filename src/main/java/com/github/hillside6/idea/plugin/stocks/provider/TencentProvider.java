@@ -1,9 +1,9 @@
 package com.github.hillside6.idea.plugin.stocks.provider;
 
-import com.github.hillside6.idea.plugin.stocks.common.MarketType;
-import com.github.hillside6.idea.plugin.stocks.common.QuoteProviderType;
+import com.github.hillside6.idea.plugin.stocks.common.type.MarketType;
+import com.github.hillside6.idea.plugin.stocks.common.type.QuoteProviderType;
 import com.github.hillside6.idea.plugin.stocks.common.util.HttpUtil;
-import com.github.hillside6.idea.plugin.stocks.config.Stock;
+import com.github.hillside6.idea.plugin.stocks.dao.model.Stock;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.SecureRandom;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 腾讯行情提供
- * https://qt.gtimg.cn/r=1231.12q=s_sz300059
+ * https:// qt.gtimg.cn/r=1231.12q=s_sz300059
  * v_s_sz300059="51~东方财富~300059~12.85~0.02~0.16~422717~54298~~2037.62~GP-A-CYB";
  *
  * @author hillside6
@@ -36,12 +36,12 @@ public class TencentProvider extends Provider {
             //请求参数转换
             SecureRandom random = new SecureRandom();
             String queryStr = "r=" + random.nextDouble() + "q=" + stockList.stream().map(
-                    stock -> switch (stock.getMarketType()) {
-                        case SH -> "s_sh" + stock.getCode();
-                        case SZ -> "s_sz" + stock.getCode();
-                        case HK -> "s_hk" + stock.getCode();
-                        case US -> "s_us" + stock.getCode();
-                    }).collect(Collectors.joining(","));
+                stock -> switch (stock.getMarketType()) {
+                    case SH -> "s_sh" + stock.getStockCode();
+                    case SZ -> "s_sz" + stock.getStockCode();
+                    case HK -> "s_hk" + stock.getStockCode();
+                    case US -> "s_us" + stock.getStockCode();
+                }).collect(Collectors.joining(","));
             //请求
             String datas = HttpUtil.get("https://qt.gtimg.cn/" + queryStr);
             for (String data : datas.split(";")) {
@@ -50,7 +50,7 @@ public class TencentProvider extends Provider {
                     continue;
                 }
                 String code = strings[2];
-                String name = strings[1];
+                String stockName = strings[1];
                 MarketType marketType;
                 if (data.contains("sz")) {
                     marketType = MarketType.SZ;
@@ -67,7 +67,8 @@ public class TencentProvider extends Provider {
                 BigDecimal lastPrice = new BigDecimal(strings[3]).setScale(10, RoundingMode.HALF_UP);
                 BigDecimal changePrice = new BigDecimal(strings[4]).setScale(10, RoundingMode.HALF_UP);
                 BigDecimal previousClosePrice = lastPrice.subtract(changePrice);
-                ProviderResult result = new ProviderResult(code, marketType, name, lastPrice, previousClosePrice);
+                ProviderResult result = new ProviderResult(code + Stock.SPLIT_SYMBOL + marketType,
+                    stockName, lastPrice, previousClosePrice);
                 resultList.add(result);
             }
         } catch (InterruptedException e) {

@@ -5,16 +5,23 @@ plugins {
 }
 
 group = "com.github.hillside6"
-version = "1.1"
+version = "1.2.0"
 
 repositories {
     mavenCentral()
 }
 
+val lombokVersion = "1.18.38"
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+}
+
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2023.1.5")
+    version.set("2024.3.1")
     type.set("IC") // Target IDE Platform
 
     plugins.set(listOf(/* Plugin Dependencies */))
